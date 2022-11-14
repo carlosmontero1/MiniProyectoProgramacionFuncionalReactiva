@@ -106,34 +106,33 @@ val r2_7 = error(0.785398, simpsonCompuesta(0, 1, 1000, f7))
 
 def simpsonExtendida(a: Int, b: Int, f: Double => Double): Double = {
   val n = 2 * (b - a)
-  val h = 1.0 * (b - a) / n
-  val func = (j: Double) => a + (j * h)
+  val h = (1.0 * (b - a)) / n
+  val func = (n: Double) => f(a + (n * h))
   val funciones = f(a) +
-    (4 * (1 to n - 1 by 2).map(func(_)).sum) +
-    (2 * (2 to n - 2 by 2).map(func(_)).sum) +
+    4 * (1 to n - 1 by 2).map(func(_)).sum +
+    2 * (2 to n - 2 by 2).map(func(_)).sum +
     f(b)
-  1.0 * (funciones * h) / 3
+  funciones * (h / 3)
 }
 
-simpsonExtendida(3,5,f1)
+simpsonExtendida(3, 5, f1)
 
-simpsonExtendida(0,2,f2)
+simpsonExtendida(0, 2, f2)
 
-simpsonExtendida(-1,1,f3)
+simpsonExtendida(-1, 1, f3)
 
-simpsonExtendida(1,2,f4)
+simpsonExtendida(1, 2, f4)
 
-simpsonExtendida(0,1,f5)
+simpsonExtendida(0, 1, f5)
 
-simpsonExtendida(2,3,f6)
+simpsonExtendida(2, 3, f6)
 
-simpsonExtendida(0,1,f7)
+simpsonExtendida(0, 1, f7)
 
-val r3_1 = error(7.33, simpsonExtendida(3,5,f1))
-val r3_2 = error(8, simpsonExtendida(0,2,f2))
-val r3_3 = error(3.333, simpsonExtendida(-1,1,f3))
-val r3_4 = error(1.09861, simpsonExtendida(1,2,f4))
-val r3_5 = error(1.71828, simpsonExtendida(0,1,f5))
-val r3_6 = error(0.828427, simpsonExtendida(2,3,f6))
-val r3_7 = error(0.785398, simpsonExtendida(0,1,f7))
-
+val r3_1 = error(7.33, simpsonExtendida(3, 5, f1))
+val r3_2 = error(8, simpsonExtendida(0, 2, f2))
+val r3_3 = error(3.333, simpsonExtendida(-1, 1, f3))
+val r3_4 = error(1.09861, simpsonExtendida(1, 2, f4))
+val r3_5 = error(1.71828, simpsonExtendida(0, 1, f5))
+val r3_6 = error(0.828427, simpsonExtendida(2, 3, f6))
+val r3_7 = error(0.785398, simpsonExtendida(0, 1, f7))
